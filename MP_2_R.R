@@ -72,7 +72,6 @@ show_interest_amount <- function(account){
   print(paste("Current Balance:", sprintf("%.2f", account$balance)))
   print(paste("Currency:", account$currency))
   
-  # Fixed annual interest rate at 5%
   interest_rate <- 0.05
   print(paste("Interest Rate:", paste0(interest_rate * 100, "%")))
   
@@ -81,14 +80,11 @@ show_interest_amount <- function(account){
   if(!is.na(get_total_days) && get_total_days > 0){
     print(paste("Total Number of Days:", paste0(get_total_days, " days")))
     
-    # Print table header
     cat(sprintf("%-5s | %-10s | %-10s\n", "Day", "Interest", "Balance"))
     cat(strrep("-", 35), "\n")
     
-    # Initialize current balance
     current_balance <- account$balance
     
-    # Calculate and display daily interest for each day
     for (day in 1:get_total_days) {
       # Daily Interest = (End-of-Day Balance) x (Annual Interest Rate / 365)
       daily_interest <- current_balance * (interest_rate / 365)
